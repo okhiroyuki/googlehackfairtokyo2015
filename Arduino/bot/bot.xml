@@ -1,0 +1,184 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="grove_ir_receiver_init" id="661" x="163" y="238">
+    <field name="PIN">2</field>
+    <next>
+      <block type="controls_if" id="662" inline="false">
+        <value name="IF0">
+          <block type="grove_ir_receiver_check_data" id="663"></block>
+        </value>
+        <statement name="DO0">
+          <block type="grove_ir_receiver_receive" id="664">
+            <next>
+              <block type="variables_set" id="665" inline="true">
+                <field name="TYPE">Number</field>
+                <field name="VAR">method</field>
+                <value name="VALUE">
+                  <block type="grove_ir_receiver_data" id="666"></block>
+                </value>
+                <next>
+                  <block type="serial_println" id="667" inline="false">
+                    <value name="CONTENT">
+                      <block type="variables_get" id="668">
+                        <field name="TYPE">Number</field>
+                        <field name="VAR">method</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="grove_led" id="669">
+                        <field name="PIN">5</field>
+                        <field name="STAT">HIGH</field>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <next>
+          <block type="procedures_callnoreturn" id="670">
+            <mutation name="control_bot"></mutation>
+            <next>
+              <block type="grove_led" id="671">
+                <field name="PIN">5</field>
+                <field name="STAT">LOW</field>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+  <block type="procedures_defnoreturn" id="672" x="738" y="238">
+    <mutation></mutation>
+    <field name="NAME">control_bot</field>
+    <statement name="STACK">
+      <block type="controls_if" id="673" inline="false">
+        <mutation elseif="3"></mutation>
+        <value name="IF0">
+          <block type="logic_compare" id="674" inline="true">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="675">
+                <field name="TYPE">Number</field>
+                <field name="VAR">method</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="math_number" id="676">
+                <field name="NUM">1</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="shield_bot_move" id="677">
+            <field name="MOVE">forward</field>
+          </block>
+        </statement>
+        <value name="IF1">
+          <block type="logic_compare" id="678" inline="true">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="679">
+                <field name="TYPE">Number</field>
+                <field name="VAR">method</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="math_number" id="680">
+                <field name="NUM">2</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO1">
+          <block type="shield_bot_drive" id="681" inline="true">
+            <value name="LEFT">
+              <block type="math_number" id="682">
+                <field name="NUM">255</field>
+              </block>
+            </value>
+            <value name="RIGHT">
+              <block type="math_number" id="683">
+                <field name="NUM">0</field>
+              </block>
+            </value>
+          </block>
+        </statement>
+        <value name="IF2">
+          <block type="logic_compare" id="684" inline="true">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="685">
+                <field name="TYPE">Number</field>
+                <field name="VAR">method</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="math_number" id="686">
+                <field name="NUM">3</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO2">
+          <block type="shield_bot_drive" id="687" inline="true">
+            <value name="LEFT">
+              <block type="math_number" id="688">
+                <field name="NUM">0</field>
+              </block>
+            </value>
+            <value name="RIGHT">
+              <block type="math_number" id="689">
+                <field name="NUM">255</field>
+              </block>
+            </value>
+          </block>
+        </statement>
+        <value name="IF3">
+          <block type="logic_compare" id="690" inline="true">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get" id="691">
+                <field name="TYPE">Number</field>
+                <field name="VAR">method</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="math_number" id="692">
+                <field name="NUM">4</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO3">
+          <block type="shield_bot_move" id="693">
+            <field name="MOVE">backward</field>
+          </block>
+        </statement>
+        <next>
+          <block type="delay" id="694">
+            <field name="DELAY_TIME">500</field>
+            <next>
+              <block type="shield_bot_move" id="695">
+                <field name="MOVE">stop</field>
+                <next>
+                  <block type="variables_set" id="696" inline="true">
+                    <field name="TYPE">Number</field>
+                    <field name="VAR">method</field>
+                    <value name="VALUE">
+                      <block type="math_number" id="697">
+                        <field name="NUM">0</field>
+                      </block>
+                    </value>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+</xml>
